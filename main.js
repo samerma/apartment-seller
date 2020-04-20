@@ -1,3 +1,4 @@
+HandlebarsIntl.registerWith(Handlebars);
 
 $("button").on("click", function () {
     let address = $("#addr-input").val()
@@ -10,11 +11,24 @@ $("button").on("click", function () {
     let relevantApts = findRelevantApts(address, minPrice, maxPrice, minRooms, maxRooms, immediate)
     renderApts(relevantApts)
 })
+$("#results").on("click", "#clear-search", function () {
+    $("#addr-input").val('')
+    $("#min-p-input").val('')
+    $("#max-p-input").val('')
+    $("#min-r-input").val('')
+    $("#max-r-input").val('')
+    $("#immed-y").val('')
+    renderApts(apartments)
+})
 
 const renderApts = function (apartments) {
     $("#results").empty()
-    console.log(apartments) //array of apartments to render
-    //Your code goes here.
+    console.log(apartments)
+    const source = $('#apartment-template').html();
+    const template = Handlebars.compile(source);
+    let newHTML = template({ apartments: apartments });
+    $('#results').append(newHTML);
 }
+
 
 renderApts(apartments) //renders apartments when page loads
