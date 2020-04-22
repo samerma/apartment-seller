@@ -65,21 +65,25 @@
 
         {{#each apartments}}
             <div class="result">
-                <img src="{{img}}" alt="">
-                <label for="adr">Address:</label>
-                <div id="adr">{{address}}</div>
-                <label for="prc">Price:</label>
-                <div id="prc">{{formatNumber price style="currency" currency="USD"}}</div>
-                <label for="rm">Rooms:</label>
-                <div id="rm">{{rooms}}</div>
-                <label for="prk">Parking:</label>
-                <div id="prk">{{parking}}</div>
-                <ul>Features: 
+                <img src="{{img}}">
+                <label class="l-addr" for="adr">Address:</label>
+                <div class="address" id="adr">{{address}}</div>
+                <label class="l-price" for="prc">Price:</label>
+                <div class="price" id="prc">{{formatNumber price style="currency" currency="USD"}}</div>
+                <label class="l-rooms" for="rm">Rooms:</label>
+                <div class="rooms" id="rm">{{rooms}}</div>
+                <label class="l-park" for="prk">Parking:</label>
+                {{#if parking}}
+                    <div class="parking" id="prk">Parking available</div>
+                    {{else}}
+                        <div class="parking" id="prk">No parking</div>
+                {{/if}}
+                <div id="features">
+                    <label>Features:</label>  
                     {{#each features}}
-                        <li>{{ this }}</li>
-                        <br>
+                        <div class="feature">- {{ this }}</div>
                     {{/each}}
-                </ul>
+                </div>
             </div>
             {{else}}
             <div class="no-match">No matching result has been found 

@@ -66,7 +66,7 @@ label{
 .result{
     font-family: 'Raleway', sans-serif;
     display: grid;
-    grid-template-columns: 350px 90px 150px 130px;
+    grid-template-columns: 350px 1fr 2fr 2fr;
     grid-template-areas: 
     "i la a f"
     "i lpr p f"
@@ -109,8 +109,16 @@ button:active{background-color: #443729;}
     box-shadow: 1px 1px 3px black;
     border-radius: 5px;
 }
-ul{
+#features{
     grid-area: f;
+   align-self: end;
+   border-radius: 10%;
+   background-color: #7A6C5D;
+   padding: 10px;
+   margin-bottom: 10px;
+}
+.feature{
+   font-size: 14px;
 }
 
 .result>.label{

@@ -7,10 +7,12 @@ $("button").on("click", function () {
     let minRooms = $("#min-r-input").val()
     let maxRooms = $("#max-r-input").val()
     let immediate = $("#immed-y")
+    let parking = $("#park-y")
 
-    let relevantApts = findRelevantApts(address, minPrice, maxPrice, minRooms, maxRooms, immediate)
+    let relevantApts = findRelevantApts(address, minPrice, maxPrice, minRooms, maxRooms, immediate, parking)
     renderApts(relevantApts)
 })
+
 $("#results").on("click", "#clear-search", function () {
     $("#addr-input").val('')
     $("#min-p-input").val('')
@@ -18,12 +20,12 @@ $("#results").on("click", "#clear-search", function () {
     $("#min-r-input").val('')
     $("#max-r-input").val('')
     $("#immed-y").val('')
+    $("#park-y").val('')
     renderApts(apartments)
 })
 
 const renderApts = function (apartments) {
     $("#results").empty()
-    console.log(apartments)
     const source = $('#apartment-template').html();
     const template = Handlebars.compile(source);
     let newHTML = template({ apartments: apartments });
