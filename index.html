@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Selouse</title>
+
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="style.css" />
+</head>
+
+<body>
+
+    <div id="search">
+        <input type="text"
+               placeholder="Address"
+               id="addr-input">
+        <input type="number"
+               class="min price"
+               placeholder="Min. Price"
+               id="min-p-input">
+        <input type="number"
+               class="max price"
+               placeholder="Max Price"
+               id="max-p-input">
+        <input type="number"
+               class="min room"
+               placeholder="Min. Rooms"
+               id="min-r-input">
+        <input type="number"
+               class="max room"
+               placeholder="Max Rooms"
+               id="max-r-input">
+
+        <div class="check-group">
+            <input class="form-radio"
+                   type="checkbox"
+                   name="immediate"
+                   id="immed-y">
+            <label for="immediate">Immediate</label>
+        </div>
+        <div class="check-group">
+            <input class="form-radio"
+                   type="checkbox"
+                   name="parking"
+                   id="park-y">
+            <label for="parking">Parking</label>
+        </div>
+
+        <button>Find Apartments</button>
+    </div>
+
+    <hr>
+
+    <div id="results"></div>
+
+    <script id="apartment-template"
+            type="text/x-handlebars-template">
+
+        {{#each apartments}}
+            <div class="result">
+                <img src="{{img}}">
+                <label class="l-addr" for="adr">Address:</label>
+                <div class="address" id="adr">{{address}}</div>
+                <label class="l-price" for="prc">Price:</label>
+                <div class="price" id="prc">{{formatNumber price style="currency" currency="USD"}}</div>
+                <label class="l-rooms" for="rm">Rooms:</label>
+                <div class="rooms" id="rm">{{rooms}}</div>
+                <label class="l-park" for="prk">Parking:</label>
+                {{#if parking}}
+                    <div class="parking" id="prk">Parking available</div>
+                    {{else}}
+                        <div class="parking" id="prk">No parking</div>
+                {{/if}}
+                <div id="features">
+                    <label>Features:</label>  
+                    {{#each features}}
+                        <div class="feature">- {{ this }}</div>
+                    {{/each}}
+                </div>
+            </div>
+            {{else}}
+            <div class="no-match">No matching result has been found 
+                <br>
+                <a style="color: beige;" href="" id="clear-search">clear search</a>
+                </div>
+           
+        {{/each}}
+   
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="node_modules\handlebars-intl\dist\handlebars-intl.js"></script>
+    <script src="apt-data.js"></script>
+    <script src="apt-filter.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
